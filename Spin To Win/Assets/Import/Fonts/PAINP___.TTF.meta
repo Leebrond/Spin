@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: e4e988b4f1fbce04ebd0d8cbac8b8502
+timeCreated: 1511934608
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: PaintyPaint
+  fontNames:
+  - PaintyPaint
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
