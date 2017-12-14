@@ -126,8 +126,7 @@ public class Wheel : MonoBehaviour
             this.transform.eulerAngles = new Vector3(0, 0, angle);
         }
     }
-
-
+    
 
     private void GiveAward()
     {
@@ -154,6 +153,7 @@ public class Wheel : MonoBehaviour
     {
         StartCoroutine(CheckSpin());
     }
+
 
     IEnumerator CheckSpin()
     {

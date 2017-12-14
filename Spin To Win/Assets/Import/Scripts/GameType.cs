@@ -25,7 +25,6 @@ public class GameType : MonoBehaviour {
         menuLoading.GetComponent<Image>().enabled = true;
         menuLoading.transform.GetChild(0).GetComponent<Image>().enabled = true;
         menuLoading.transform.GetChild(1).GetComponent<Text>().enabled = true;
-
         StartCoroutine(WaitGetConfig());
     }
 
