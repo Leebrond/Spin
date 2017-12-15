@@ -49,6 +49,7 @@ public class Wheel : MonoBehaviour
         }
     }
 
+
     void Start()
     {
         SetAngle();
@@ -80,6 +81,7 @@ public class Wheel : MonoBehaviour
                 listLose.Add(i * GameConfig.instance.degreePrize);
         }
     }
+
 
     void FixedUpdate()
     {
@@ -114,7 +116,9 @@ public class Wheel : MonoBehaviour
 
                 Debug.Log("Finish Angle : " + finishAngle);
 
-                GiveAward();
+                //GiveAward();
+                uiPlay.txtamountCoin.text = PlayerManager.instance.amountCoin.ToString();
+                uiPlay.EnableButton();
             }
 
             float t = currentLerpRotationTime / maxLerpRotationTime;
@@ -132,7 +136,7 @@ public class Wheel : MonoBehaviour
     {
         int angleZ = (int)transform.eulerAngles.z;
 
-       Debug.Log("Angle Z : " + angleZ);
+        Debug.Log("Angle Z : " + angleZ);
 
         for(int i = 0; i<GameConfig.instance.countPrizes; i++)
         {
@@ -151,22 +155,17 @@ public class Wheel : MonoBehaviour
 
     public void SpinWheel()
     {
+        uiPlay.DisableButton();
+        
         StartCoroutine(CheckSpin());
     }
 
 
     IEnumerator CheckSpin()
     {
-        uiPlay.DisableButton();
-
-        currentLerpRotationTime = 0f;
-
-        maxLerpRotationTime = uiPlay.sliderSpeed.value;
-
-        int fullCircle = 12;
-
         WWWForm form = new WWWForm();
         form.AddField("usernamePost", PlayerManager.instance.playerName);
+        form.AddField("idPost", GameConfig.instance.idWheel);
 
         WWW www = new WWW(DB.instance.URL + "daily.php", form);
 
@@ -178,11 +177,13 @@ public class Wheel : MonoBehaviour
             yield break;
         else
         {
-            if (www.text == "\nL")
+            if (www.text == "L")
             {
+                Debug.Log("Lose");
                 randomFinishAngle = listLose[UnityEngine.Random.Range(0, listLose.Count)];
-            } else if (www.text == "\nR") 
+            } else
             {
+                Debug.Log("Random");
                 //randomFinishAngle = listWin[UnityEngine.Random.Range(0, listWin.Count)];
                 randomFinishAngle = spinAngle[UnityEngine.Random.Range(0, spinAngle.Length)];
             }
@@ -190,7 +191,43 @@ public class Wheel : MonoBehaviour
 
         Debug.Log(randomFinishAngle);
 
+        currentLerpRotationTime = 0f;
+
+        maxLerpRotationTime = uiPlay.sliderSpeed.value;
+
+        int fullCircle = 12;
+
         finishAngle = -(fullCircle * 360 + randomFinishAngle);
+
+        int stopAngleZ = 0;
+        
+        if(randomFinishAngle != 0)
+            stopAngleZ = (int)(360 - randomFinishAngle);
+        
+        Debug.Log("Stop Angle Z : " + stopAngleZ);
+
+        int win = 0;
+
+        for (int i = 0; i < GameConfig.instance.countPrizes; i++)
+        {
+            int a = i * GameConfig.instance.degreePrize;
+            if (a == stopAngleZ)
+            {
+                win = GameConfig.instance.timesPrize[i];
+                break;
+            }
+        }
+
+        form.AddField("betPost", uiPlay.chosenBet);
+        form.AddField("timesPost", win);
+
+        WWW www2 = new WWW(DB.instance.URL + "bet.php", form);
+
+        yield return www2;
+        Debug.Log(www2.text);
+
+        PlayerManager.instance.amountCoin = int.Parse(www2.text);
+        
         // Debug.Log("Finish Angle : " + finishAngle);
         isSpinning = true;
     }

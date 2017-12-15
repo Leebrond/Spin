@@ -54,7 +54,9 @@ public class DB : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("usernamePost", "kevin");
-        form.AddField("idPost", 7);
+        form.AddField("idPost", 1);
+        form.AddField("betPost", 10);
+        form.AddField("timesPost", -1);
 
         WWW www = new WWW(URL + "daily.php", form);
 

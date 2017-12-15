@@ -8,6 +8,8 @@ public class GameConfig : MonoBehaviour {
     
     public Sprite spWheel;
 
+    public int idWheel;
+
     public int countPrizes;
 
     public int degreePrize;
@@ -57,6 +59,8 @@ public class GameConfig : MonoBehaviour {
         {
             optionBet[i] = int.Parse(tempBet[i]);
         }
+
+        idWheel = int.Parse(temp[3]);
     }
 
 
