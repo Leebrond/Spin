@@ -72,8 +72,6 @@ public class WWWLogin : MonoBehaviour {
         if (temp[0] == "\nLogin success ")
         {
            
-            yield return StartCoroutine(GetPlayerDaily(inputUsername.text));
-
             panelLobby.SetActive(true);
             PlayerManager.instance.amountCoin = int.Parse(temp[1]);
             PlayerManager.instance.playerName = temp[2];
@@ -82,17 +80,5 @@ public class WWWLogin : MonoBehaviour {
 
         }
     }
-
-
-    IEnumerator GetPlayerDaily(string username)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("usernamePost", username);
-
-        WWW www = new WWW(DB.instance.URL + "daily.php", form);
-
-        yield return www;
-
-        Debug.Log(www.text);
-    }
+    
 }

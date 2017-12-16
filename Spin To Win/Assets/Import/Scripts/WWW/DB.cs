@@ -27,7 +27,7 @@ public class DB : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Test());
+       // StartCoroutine(Test());
     }
 
 

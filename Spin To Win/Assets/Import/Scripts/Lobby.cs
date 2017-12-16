@@ -17,7 +17,7 @@ public class Lobby : MonoBehaviour {
 
         txtPlayername.text = PlayerManager.instance.playerName;
         txtCoin.text = PlayerManager.instance.amountCoin.ToString();
-        StartCoroutine(DB.instance.UpdateBalance(-5, 20));
+        //StartCoroutine(DB.instance.UpdateBalance(-5, 20));
     }
 
     void Update()
