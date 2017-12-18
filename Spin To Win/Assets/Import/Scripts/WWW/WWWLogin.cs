@@ -19,15 +19,17 @@ public class WWWLogin : MonoBehaviour {
     
     void Start()
     {
+        
         txtInfo.text = "Welcome";
-       /* if (PlayerManager.instance.isLogin)
+        if (PlayerManager.instance.isLogin)
         {
             panelLogin.SetActive(false);
             panelLobby.SetActive(true);
-            GameObject panelLoading = GameObject.Find("Loading");
-            panelLoading.transform.GetChild(0).GetComponent<Image>().enabled = false;
-            panelLoading.transform.GetChild(1).GetComponent<Text>().enabled = false;
-        } */
+        } else
+        {
+            panelLogin.SetActive(true);
+            panelLobby.SetActive(false);
+        }
     }
     
 
@@ -71,13 +73,18 @@ public class WWWLogin : MonoBehaviour {
 
         if (temp[0] == "\nLogin success ")
         {
-           
+            
+            GetComponent<WWWGameType>().panelLoading.SetActive(true);
             panelLobby.SetActive(true);
             PlayerManager.instance.amountCoin = int.Parse(temp[1]);
             PlayerManager.instance.playerName = temp[2];
             PlayerManager.instance.isLogin = true;
             //panelLogin.SetActive(false);
+            txtInfo.text = "Welcome";
 
+        } else
+        {
+            txtInfo.text = www.text;
         }
     }
     

@@ -12,33 +12,28 @@ public class WWWGameType : MonoBehaviour {
     public Transform tfType;
 
     public GameObject panelLoading;
-
-   
+    
     
 
 	void Start () {
-        StartCoroutine(WaitData());
+        
+            StartCoroutine(WaitData());
     }
 
    
     public IEnumerator WaitData()
     {
-        panelLoading.GetComponent<Image>().enabled = true;
-        panelLoading.transform.GetChild(0).GetComponent<Image>().enabled = true;
-        panelLoading.transform.GetChild(1).GetComponent<Text>().enabled = false;
-
+        panelLoading.SetActive(true);
         yield return StartCoroutine(GetWheelTypes());
-
-        panelLoading.GetComponent<Image>().enabled = false;
-        panelLoading.transform.GetChild(0).GetComponent<Image>().enabled = false;
-        panelLoading.transform.GetChild(1).GetComponent<Text>().enabled = false;
-
+        
         while (!PlayerManager.instance.isLogin)
         {
             yield return 0;
         }
+        panelLoading.SetActive(false);
+        GameObject.Find("Login").SetActive(false);
 
-        this.gameObject.SetActive(false);
+        
     }
     
     private void SetTypeWidth(int count)

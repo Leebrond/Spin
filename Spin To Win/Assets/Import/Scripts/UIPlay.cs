@@ -87,6 +87,10 @@ public class UIPlay : MonoBehaviour {
         sliderSpeed.interactable = true;
     }
 
+    public void BackLobby()
+    {
+        SceneManager.LoadScene(0);
+    }
     
 
     public void SetSliderValue(float sliderValue)
@@ -106,7 +110,7 @@ public class UIPlay : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
-            PlayerManager.instance.isLogin = false;
+            //PlayerManager.instance.isLogin = false;
         }
     }
 }

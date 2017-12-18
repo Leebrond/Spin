@@ -17,7 +17,7 @@ public class Point : MonoBehaviour {
         
         for(int i = 0; i<GameConfig.instance.countPrizes; i++)
         {
-            GameObject temp = Instantiate(prefPoint, transform.position, Quaternion.identity, tfPoints);
+            Instantiate(prefPoint, transform.position, Quaternion.identity, tfPoints);
         }
     }
 }

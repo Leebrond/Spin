@@ -12,9 +12,11 @@ public class Wheel : MonoBehaviour
 
     public float[] spinAngle;
 
-    private UIPlay uiPlay;
+    public List<float> listLose;
 
     public float[] checkSpeed;
+
+    private UIPlay uiPlay;
 
     private Prize prize;
     
@@ -31,11 +33,7 @@ public class Wheel : MonoBehaviour
     private float arrowSpeed;
 
     private float randomFinishAngle;
-
-    //public List<float> listWin;
-
-    public List<float> listLose;
-
+    
 
     void Awake()
     {

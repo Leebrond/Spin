@@ -13,12 +13,22 @@ public class Lobby : MonoBehaviour {
 
     public GameObject menuLogin;
 
+    public GameObject menuSetting;
+
 	void Start () {
 
         txtPlayername.text = PlayerManager.instance.playerName;
         txtCoin.text = PlayerManager.instance.amountCoin.ToString();
-        //StartCoroutine(DB.instance.UpdateBalance(-5, 20));
     }
+
+
+    public void OpenSetting()
+    {
+        menuSetting.SetActive(false);
+    }
+
+  
+
 
     void Update()
     {
@@ -30,8 +40,8 @@ public class Lobby : MonoBehaviour {
             }
             //Debug.Break();
             menuLogin.SetActive(true);
-            // StartCoroutine(menuLogin.GetComponent<WWWGameType>().WaitData());
-            menuLogin.GetComponent<WWWGameType>().StartCoroutine(menuLogin.GetComponent<WWWGameType>().WaitData());
+            FindObjectOfType<WWWGameType>().StartCoroutine("WaitData");
+            //StartCoroutine(FindObjectOfType<WWWGameType>().WaitData());
             PlayerManager.instance.isLogin = false;
             this.gameObject.SetActive(false);
 

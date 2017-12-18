@@ -10,21 +10,18 @@ public class GameType : MonoBehaviour {
 
     private Button btnPlay;
 
-    private GameObject menuLoading;
+    
 
 
     void Start () {
         btnPlay = transform.Find("Button").GetComponent<Button>();
         btnPlay.onClick.AddListener(PlayGameType);
-        menuLoading = GameObject.Find("Loading");
 	}
 
 
     public void PlayGameType()
     {
-        menuLoading.GetComponent<Image>().enabled = true;
-        menuLoading.transform.GetChild(0).GetComponent<Image>().enabled = true;
-        menuLoading.transform.GetChild(1).GetComponent<Text>().enabled = true;
+        FindObjectOfType<WWWGameType>().panelLoading.SetActive(true);
         StartCoroutine(WaitGetConfig());
     }
 
