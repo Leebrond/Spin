@@ -28,9 +28,10 @@ public class GameType : MonoBehaviour {
 
     IEnumerator WaitGetConfig()
     {
-        StartCoroutine(GetConfig(false));
-        yield return StartCoroutine(GetConfig(true));
+        yield return StartCoroutine(GetConfig(false));
+       // yield return StartCoroutine(GetConfig(true));
         SceneManager.LoadScene(1);
+        
     }
 
 

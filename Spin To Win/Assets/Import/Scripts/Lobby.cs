@@ -15,20 +15,42 @@ public class Lobby : MonoBehaviour {
 
     public GameObject menuSetting;
 
-	void Start () {
+    public Button btnSound;
 
+    [SerializeField]
+    private AudioSource audioBG;
+
+    [SerializeField]
+    private Sprite soundON;
+
+    [SerializeField]
+    private Sprite soundOFF;
+
+
+	void Start () {
         txtPlayername.text = PlayerManager.instance.playerName;
         txtCoin.text = PlayerManager.instance.amountCoin.ToString();
+        audioBG.enabled = PlayerManager.instance.toggleSound;
+        btnSound.onClick.AddListener(SetSound);
     }
 
 
-    public void OpenSetting()
+    public void SetSound()
     {
-        menuSetting.SetActive(false);
+        if (PlayerManager.instance.toggleSound)
+        {
+            audioBG.enabled = false;
+            btnSound.GetComponent<Image>().sprite = soundOFF;
+            PlayerManager.instance.toggleSound = false;
+
+        } else
+        {
+            audioBG.enabled = true;
+            btnSound.GetComponent<Image>().sprite = soundON;
+            PlayerManager.instance.toggleSound = true;
+        }
     }
-
-  
-
+   
 
     void Update()
     {

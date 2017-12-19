@@ -6,7 +6,7 @@ public class GameConfig : MonoBehaviour {
 
     public static GameConfig instance;
     
-    public Sprite spWheel;
+   // public Sprite spWheel;
 
     public int idWheel;
 
@@ -17,7 +17,8 @@ public class GameConfig : MonoBehaviour {
     public int[] timesPrize;
 
     public int[] optionBet;
-    
+
+    public Sprite[] spWheel;
 
     void Awake()
     {
@@ -68,6 +69,6 @@ public class GameConfig : MonoBehaviour {
     {
         Texture2D texture = new Texture2D(5, 5);
         data.LoadImageIntoTexture(texture);
-        spWheel = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one / 2);
+        //spWheel = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one / 2);
     }
 }

@@ -56,7 +56,9 @@ public class Wheel : MonoBehaviour
 
         uiPlay.SetSliderValue(uiPlay.sliderSpeed.value);
 
-        GetComponent<Image>().sprite = GameConfig.instance.spWheel;
+        //GetComponent<Image>().sprite = GameConfig.instance.spWheel;
+
+        GetComponent<Image>().sprite = GameConfig.instance.spWheel[GameConfig.instance.idWheel];
 
         prize = GetComponent<Prize>();
 

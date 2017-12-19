@@ -15,11 +15,9 @@ public class WWWLogin : MonoBehaviour {
 
     public Text txtInfo;
 
-
     
     void Start()
     {
-        
         txtInfo.text = "Welcome";
         if (PlayerManager.instance.isLogin)
         {

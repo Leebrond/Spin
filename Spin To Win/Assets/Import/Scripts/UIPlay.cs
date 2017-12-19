@@ -14,7 +14,6 @@ public class UIPlay : MonoBehaviour {
     public Button btnDecBet;
 
 
-
     [Space]
     public Text txtamountBet;
 
@@ -25,8 +24,6 @@ public class UIPlay : MonoBehaviour {
     public Slider sliderSpeed;
 
     private int index;
-
-
     
 
 	// Use this for initialization

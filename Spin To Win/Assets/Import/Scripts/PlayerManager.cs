@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour {
 
     public int amountCoin;
 
+    public bool toggleSound;
+
     void Awake()
     {
        if(instance == null)

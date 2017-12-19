@@ -57,10 +57,9 @@ public class WWWGameType : MonoBehaviour {
 
         int length = int.Parse(www.text);
 
-        
-
         wheelType = new GameObject[length];
-        
+
+        GameConfig.instance.spWheel = new Sprite[length];
 
        // tfType.GetComponent<RectTransform>().sizeDelta = new Vector2((length * 600f) + 150f, 100f);
 
@@ -83,6 +82,8 @@ public class WWWGameType : MonoBehaviour {
     }
 
 
+  
+
     private IEnumerator GetPic(int id)
     {
         WWWForm form = new WWWForm();
@@ -90,14 +91,21 @@ public class WWWGameType : MonoBehaviour {
 
         WWW www = new WWW(DB.instance.URL + "stw.php", form);
 
+        WWW www2 = new WWW(DB.instance.URL + "pic.php", form);
+
         yield return www;
 
         Debug.Log(www.text);
 
         Texture2D texture = new Texture2D(5, 5);
         www.LoadImageIntoTexture(texture);
-
         wheelType[id].GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one / 2);
+
+        yield return www2;
+
+        Texture2D textureWheel = new Texture2D(5, 5);
+        www2.LoadImageIntoTexture(textureWheel);
+        GameConfig.instance.spWheel[id] = Sprite.Create(textureWheel, new Rect(0, 0, textureWheel.width, textureWheel.height), Vector2.one / 2);
     }
 
 
