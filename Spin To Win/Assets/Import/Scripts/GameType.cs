@@ -10,17 +10,16 @@ public class GameType : MonoBehaviour {
 
     private Button btnPlay;
 
-    
-
 
     void Start () {
-        btnPlay = transform.Find("Button").GetComponent<Button>();
+        btnPlay = transform.Find("btnPlay").GetComponent<Button>();
         btnPlay.onClick.AddListener(PlayGameType);
 	}
 
 
     public void PlayGameType()
     {
+        GameConfig.instance.noWheel = row;
         FindObjectOfType<WWWGameType>().panelLoading.SetActive(true);
         StartCoroutine(WaitGetConfig());
     }

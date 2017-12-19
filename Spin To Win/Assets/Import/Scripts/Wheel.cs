@@ -58,7 +58,7 @@ public class Wheel : MonoBehaviour
 
         //GetComponent<Image>().sprite = GameConfig.instance.spWheel;
 
-        GetComponent<Image>().sprite = GameConfig.instance.spWheel[GameConfig.instance.idWheel];
+        GetComponent<Image>().sprite = GameConfig.instance.spWheel[GameConfig.instance.noWheel];
 
         prize = GetComponent<Prize>();
 
@@ -110,6 +110,9 @@ public class Wheel : MonoBehaviour
                 currentLerpRotationTime = maxLerpRotationTime;
                 
                 isSpinning = false;
+
+                FindObjectOfType<Arrow>().transform.eulerAngles = Vector3.zero;
+                FindObjectOfType<Arrow>().transform.localPosition = new Vector3(0, 507.2f, 0);
 
                 startAngle = finishAngle % 360;
                 Debug.Log("Start Angle : " + startAngle);

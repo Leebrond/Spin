@@ -5,8 +5,10 @@ using UnityEngine;
 public class GameConfig : MonoBehaviour {
 
     public static GameConfig instance;
-    
-   // public Sprite spWheel;
+
+    // public Sprite spWheel;
+
+    public int noWheel;
 
     public int idWheel;
 

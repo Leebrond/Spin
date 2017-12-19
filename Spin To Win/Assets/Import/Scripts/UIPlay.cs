@@ -28,7 +28,6 @@ public class UIPlay : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
         index = 0;
         chosenBet = GameConfig.instance.optionBet[index];
         txtamountBet.text = chosenBet.ToString();
