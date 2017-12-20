@@ -67,10 +67,10 @@ public class GameConfig : MonoBehaviour {
     }
 
 
-    public void SetPic(WWW data)
+    public void SetPic(WWW data, int id)
     {
-        Texture2D texture = new Texture2D(5, 5);
-        data.LoadImageIntoTexture(texture);
-        //spWheel = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one / 2);
+        Texture2D textureWheel = new Texture2D(5, 5);
+        data.LoadImageIntoTexture(textureWheel);
+        spWheel[id] = Sprite.Create(textureWheel, new Rect(0, 0, textureWheel.width, textureWheel.height), Vector2.one / 2);
     }
 }

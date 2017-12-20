@@ -53,9 +53,7 @@ public class Wheel : MonoBehaviour
         SetAngle();
 
         uiPlay = FindObjectOfType<UIPlay>();
-
-        uiPlay.SetSliderValue(uiPlay.sliderSpeed.value);
-
+        
         //GetComponent<Image>().sprite = GameConfig.instance.spWheel;
 
         GetComponent<Image>().sprite = GameConfig.instance.spWheel[GameConfig.instance.noWheel];

@@ -48,7 +48,7 @@ public class GameType : MonoBehaviour {
 
         if (isPic)
         {
-            GameConfig.instance.SetPic(www);
+            //GameConfig.instance.SetPic(www);
         } else
         {
             GameConfig.instance.SetConfig(www);

@@ -103,9 +103,10 @@ public class WWWGameType : MonoBehaviour {
 
         yield return www2;
 
-        Texture2D textureWheel = new Texture2D(5, 5);
+        GameConfig.instance.SetPic(www2, id);
+       /* Texture2D textureWheel = new Texture2D(5, 5);
         www2.LoadImageIntoTexture(textureWheel);
-        GameConfig.instance.spWheel[id] = Sprite.Create(textureWheel, new Rect(0, 0, textureWheel.width, textureWheel.height), Vector2.one / 2);
+        GameConfig.instance.spWheel[id] = Sprite.Create(textureWheel, new Rect(0, 0, textureWheel.width, textureWheel.height), Vector2.one / 2);*/
     }
 
 
