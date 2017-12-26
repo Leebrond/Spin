@@ -28,10 +28,20 @@ public class Lobby : MonoBehaviour {
 
 
 	void Start () {
+        SetPlayerProfile();
+        btnSound.onClick.AddListener(SetSound);
+    }
+
+    public void SetPlayerProfile()
+    {
         txtPlayername.text = PlayerManager.instance.playerName;
         txtCoin.text = PlayerManager.instance.amountCoin.ToString();
         audioBG.enabled = PlayerManager.instance.toggleSound;
-        btnSound.onClick.AddListener(SetSound);
+    }
+
+    public void ShowMenuAvatar()
+    {
+
     }
 
 

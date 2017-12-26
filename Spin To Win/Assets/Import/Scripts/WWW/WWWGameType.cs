@@ -80,8 +80,6 @@ public class WWWGameType : MonoBehaviour {
             }
         }
     }
-
-
   
 
     private IEnumerator GetPic(int id)

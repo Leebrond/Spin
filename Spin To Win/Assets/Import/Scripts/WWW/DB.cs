@@ -32,7 +32,7 @@ public class DB : MonoBehaviour
 
 
 
-    public IEnumerator UpdateBalance(int times, int bet)
+   /* public IEnumerator UpdateBalance(int times, int bet)
     {
         Debug.Log("UpdateBalance");
         WWWForm form = new WWWForm();
@@ -47,7 +47,7 @@ public class DB : MonoBehaviour
         Debug.Log(www.text);
 
         PlayerManager.instance.amountCoin = int.Parse(www.text);
-    }
+    } */
 
 
     IEnumerator Test()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour {
 
-    private AudioSource soundArrow;
+    public AudioSource soundArrow;
 
     void Start()
     {

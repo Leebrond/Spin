@@ -77,8 +77,10 @@ public class WWWLogin : MonoBehaviour {
             PlayerManager.instance.amountCoin = int.Parse(temp[1]);
             PlayerManager.instance.playerName = temp[2];
             PlayerManager.instance.isLogin = true;
+            FindObjectOfType<Lobby>().SetPlayerProfile();
             //panelLogin.SetActive(false);
             txtInfo.text = "Welcome";
+            
 
         } else
         {

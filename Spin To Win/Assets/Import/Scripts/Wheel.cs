@@ -53,7 +53,9 @@ public class Wheel : MonoBehaviour
         SetAngle();
 
         uiPlay = FindObjectOfType<UIPlay>();
-        
+
+        uiPlay.OnEndDragSlider();
+
         //GetComponent<Image>().sprite = GameConfig.instance.spWheel;
 
         GetComponent<Image>().sprite = GameConfig.instance.spWheel[GameConfig.instance.noWheel];
@@ -76,7 +78,7 @@ public class Wheel : MonoBehaviour
             a += GameConfig.instance.degreePrize;
 
             if (GameConfig.instance.timesPrize[i] < 0)
-                listLose.Add(i * GameConfig.instance.degreePrize);
+                listLose.Add(360- (i * GameConfig.instance.degreePrize));
         }
     }
 
@@ -111,6 +113,7 @@ public class Wheel : MonoBehaviour
 
                 FindObjectOfType<Arrow>().transform.eulerAngles = Vector3.zero;
                 FindObjectOfType<Arrow>().transform.localPosition = new Vector3(0, 507.2f, 0);
+                FindObjectOfType<Arrow>().soundArrow.PlayOneShot(FindObjectOfType<Arrow>().soundArrow.clip);
 
                 startAngle = finishAngle % 360;
                 Debug.Log("Start Angle : " + startAngle);
@@ -178,14 +181,13 @@ public class Wheel : MonoBehaviour
             yield break;
         else
         {
-            if (www.text == "L")
+            if (www.text == "\nL")
             {
                 Debug.Log("Lose");
                 randomFinishAngle = listLose[UnityEngine.Random.Range(0, listLose.Count)];
             } else
             {
                 Debug.Log("Random");
-                //randomFinishAngle = listWin[UnityEngine.Random.Range(0, listWin.Count)];
                 randomFinishAngle = spinAngle[UnityEngine.Random.Range(0, spinAngle.Length)];
             }
         }

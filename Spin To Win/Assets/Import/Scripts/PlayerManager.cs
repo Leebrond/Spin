@@ -6,6 +6,8 @@ public class PlayerManager : MonoBehaviour {
 
     public static PlayerManager instance;
 
+    public int idAvatar;
+
     public string playerName;
 
     public bool isLogin;
@@ -33,4 +35,6 @@ public class PlayerManager : MonoBehaviour {
             Debug.Log("Internet not reachable");
         }
     }
+
+   
 }

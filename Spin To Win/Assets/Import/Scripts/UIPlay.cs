@@ -112,7 +112,12 @@ public class UIPlay : MonoBehaviour {
         level[1] = (level[3] - level[0]) / level[0] + level[0];
         level[2] = level[1] + (level[3] - level[0]) / level[0];
 
-        if (sliderSpeed.value <= level[0])
+        level[0] = 10f;
+        level[3] = sliderSpeed.minValue;
+        level[1] = level[0] - (level[0] - level[3]) / 3;
+        level[2] = level[1] - (level[0] - level[3]) / 3;
+
+        if (sliderSpeed.value >= level[0])
         {
             sliderSpeed.value = level[0];
             tfLevel.GetChild(0).GetComponent<Image>().enabled = true;
@@ -120,7 +125,7 @@ public class UIPlay : MonoBehaviour {
             tfLevel.GetChild(2).GetComponent<Image>().enabled = false;
             tfLevel.GetChild(3).GetComponent<Image>().enabled = false;
         }
-        else if (sliderSpeed.value > level[0] && sliderSpeed.value <= level[1])
+        else if (sliderSpeed.value < level[0] && sliderSpeed.value >= level[1])
         {
             sliderSpeed.value = level[1];
             tfLevel.GetChild(0).GetComponent<Image>().enabled = true;
@@ -128,7 +133,7 @@ public class UIPlay : MonoBehaviour {
             tfLevel.GetChild(2).GetComponent<Image>().enabled = false;
             tfLevel.GetChild(3).GetComponent<Image>().enabled = false;
         }
-        else if (sliderSpeed.value > level[1] && sliderSpeed.value <= level[2])
+        else if (sliderSpeed.value < level[1] && sliderSpeed.value >= level[2])
         {
             sliderSpeed.value = level[2];
             tfLevel.GetChild(0).GetComponent<Image>().enabled = true;
@@ -145,13 +150,13 @@ public class UIPlay : MonoBehaviour {
             tfLevel.GetChild(3).GetComponent<Image>().enabled = true;
         }
 
+        Wheel.instance.maxLerpRotationTime = sliderSpeed.value;
 
         float limit = sliderSpeed.value / (float)(Wheel.instance.checkSpeed.Length + 1);
 
         Wheel.instance.checkSpeed[0] = limit + (limit / 2f);
         Wheel.instance.checkSpeed[1] = (limit * 2f) + (limit / 3f);
         Wheel.instance.checkSpeed[2] = (limit * 3f) + (limit / 4f);
-
     }
 
 
