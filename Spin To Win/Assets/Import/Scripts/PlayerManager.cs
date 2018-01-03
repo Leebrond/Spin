@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour {
 
     public bool isLogin;
 
-    public int amountCoin;
+    public float amountCoin;
 
     public bool toggleSound;
 
@@ -35,6 +35,4 @@ public class PlayerManager : MonoBehaviour {
             Debug.Log("Internet not reachable");
         }
     }
-
-   
 }

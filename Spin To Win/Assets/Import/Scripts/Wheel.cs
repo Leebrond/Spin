@@ -229,7 +229,7 @@ public class Wheel : MonoBehaviour
         yield return www2;
         Debug.Log(www2.text);
 
-        PlayerManager.instance.amountCoin = int.Parse(www2.text);
+        PlayerManager.instance.amountCoin = float.Parse(www2.text);
         
         // Debug.Log("Finish Angle : " + finishAngle);
         isSpinning = true;

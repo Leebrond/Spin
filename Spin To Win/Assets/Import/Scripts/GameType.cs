@@ -4,22 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameType : MonoBehaviour {
+public class GameType : MonoBehaviour
+{
+    public int nowheel;
 
-    public int row;
+    public int idwheel;
 
     private Button btnPlay;
 
 
-    void Start () {
+    
+
+    void Start()
+    {
         btnPlay = transform.Find("btnPlay").GetComponent<Button>();
         btnPlay.onClick.AddListener(PlayGameType);
-	}
+    }
 
 
     public void PlayGameType()
     {
-        GameConfig.instance.noWheel = row;
+        GameConfig.instance.noWheel = nowheel;
         FindObjectOfType<WWWGameType>().panelLoading.SetActive(true);
         StartCoroutine(WaitGetConfig());
     }
@@ -27,31 +32,23 @@ public class GameType : MonoBehaviour {
 
     IEnumerator WaitGetConfig()
     {
-        yield return StartCoroutine(GetConfig(false));
-       // yield return StartCoroutine(GetConfig(true));
+        yield return StartCoroutine(GetConfig());
         SceneManager.LoadScene(1);
-        
     }
 
 
-    IEnumerator GetConfig(bool isPic)
+    IEnumerator GetConfig()
     {
         WWWForm form = new WWWForm();
-        form.AddField("rowPost", row);
-        form.AddField("picPost", isPic.ToString());
+        form.AddField("idPost", idwheel);
 
-        WWW www = new WWW(DB.instance.URL + "config.php",form);
+        WWW www = new WWW(DB.instance.URL + "config.php", form);
 
         yield return www;
 
         Debug.Log(www.text);
 
-        if (isPic)
-        {
-            //GameConfig.instance.SetPic(www);
-        } else
-        {
-            GameConfig.instance.SetConfig(www);
-        }
+        GameConfig.instance.SetConfig(www);
     }
+    
 }

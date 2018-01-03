@@ -74,7 +74,7 @@ public class WWWLogin : MonoBehaviour {
             
             GetComponent<WWWGameType>().panelLoading.SetActive(true);
             panelLobby.SetActive(true);
-            PlayerManager.instance.amountCoin = int.Parse(temp[1]);
+            PlayerManager.instance.amountCoin = float.Parse(temp[1]);
             PlayerManager.instance.playerName = temp[2];
             PlayerManager.instance.isLogin = true;
             FindObjectOfType<Lobby>().SetPlayerProfile();

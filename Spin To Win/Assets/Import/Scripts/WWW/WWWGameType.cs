@@ -55,7 +55,9 @@ public class WWWGameType : MonoBehaviour {
 
         Debug.Log(www.text);
 
-        int length = int.Parse(www.text);
+        string[] temp = www.text.Split(';');
+
+        int length = temp.Length - 1;
 
         wheelType = new GameObject[length];
 
@@ -66,23 +68,24 @@ public class WWWGameType : MonoBehaviour {
         for (int i = 0; i < wheelType.Length; i++)
         {
             wheelType[i] = Instantiate(prefType, transform.position, Quaternion.identity, tfType);
-            wheelType[i].GetComponent<GameType>().row = i;
+            wheelType[i].GetComponent<GameType>().nowheel = i;
+            wheelType[i].GetComponent<GameType>().idwheel = int.Parse(temp[i]);
 
             if (i == wheelType.Length - 1)
             {
                 SetTypeWidth(length);
-                yield return StartCoroutine(GetPic(i));
+                yield return StartCoroutine(GetPic(wheelType[i].GetComponent<GameType>().idwheel, i));
                 yield return StartCoroutine(GetName());
             }
             else
             {
-                StartCoroutine(GetPic(i));
+                StartCoroutine(GetPic(wheelType[i].GetComponent<GameType>().idwheel, i));
             }
         }
     }
   
 
-    private IEnumerator GetPic(int id)
+    private IEnumerator GetPic(int id, int index)
     {
         WWWForm form = new WWWForm();
         form.AddField("idPost", id.ToString());
@@ -97,11 +100,11 @@ public class WWWGameType : MonoBehaviour {
 
         Texture2D texture = new Texture2D(5, 5);
         www.LoadImageIntoTexture(texture);
-        wheelType[id].GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one / 2);
+        wheelType[index].GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one / 2);
 
         yield return www2;
 
-        GameConfig.instance.SetPic(www2, id);
+        GameConfig.instance.SetPic(www2, index);
        /* Texture2D textureWheel = new Texture2D(5, 5);
         www2.LoadImageIntoTexture(textureWheel);
         GameConfig.instance.spWheel[id] = Sprite.Create(textureWheel, new Rect(0, 0, textureWheel.width, textureWheel.height), Vector2.one / 2);*/
