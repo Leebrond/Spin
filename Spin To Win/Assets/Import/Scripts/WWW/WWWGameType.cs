@@ -98,8 +98,14 @@ public class WWWGameType : MonoBehaviour {
 
         Debug.Log(www.text);
 
-        Texture2D texture = new Texture2D(5, 5);
+        /*Texture2D texture = new Texture2D(5, 5);
         www.LoadImageIntoTexture(texture);
+        wheelType[index].GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one / 2);*/
+        
+        byte[] b64_bytes = System.Convert.FromBase64String(www.text);
+       
+        Texture2D texture = new Texture2D(5, 5);
+        texture.LoadImage(b64_bytes);
         wheelType[index].GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one / 2);
 
         yield return www2;

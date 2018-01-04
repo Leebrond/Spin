@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class GameConfig : MonoBehaviour {
 
@@ -69,8 +72,27 @@ public class GameConfig : MonoBehaviour {
 
     public void SetPic(WWW data, int id)
     {
-        Texture2D textureWheel = new Texture2D(5, 5);
-        data.LoadImageIntoTexture(textureWheel);
-        spWheel[id] = Sprite.Create(textureWheel, new Rect(0, 0, textureWheel.width, textureWheel.height), Vector2.one / 2);
+        /* Texture2D textureWheel = new Texture2D(5, 5);
+         data.LoadImageIntoTexture(textureWheel);
+         spWheel[id] = Sprite.Create(textureWheel, new Rect(0, 0, textureWheel.width, textureWheel.height), Vector2.one / 2); */
+
+        byte[] b64_bytes = System.Convert.FromBase64String(data.text);
+        Texture2D textureWheel = new Texture2D(1, 1);
+        textureWheel.LoadImage(b64_bytes);
+       
+        byte[] newBytes = textureWheel.EncodeToPNG();
+
+        using (MemoryStream ms = new MemoryStream())
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(ms, textureWheel);
+            newBytes = ms.ToArray();
+        }
+
+        Texture2D newTexture = new Texture2D(1, 1);
+        newTexture.LoadImage(newBytes);
+        
+
+        spWheel[id] = Sprite.Create(newTexture, new Rect(0, 0, newTexture.width, newTexture.height), Vector2.one / 2);
     }
 }
