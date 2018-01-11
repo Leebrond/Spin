@@ -79,15 +79,8 @@ public class GameConfig : MonoBehaviour {
         byte[] b64_bytes = System.Convert.FromBase64String(data.text);
         Texture2D textureWheel = new Texture2D(1, 1);
         textureWheel.LoadImage(b64_bytes);
-       
         byte[] newBytes = textureWheel.EncodeToPNG();
-
-        using (MemoryStream ms = new MemoryStream())
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(ms, textureWheel);
-            newBytes = ms.ToArray();
-        }
+        
 
         Texture2D newTexture = new Texture2D(1, 1);
         newTexture.LoadImage(newBytes);

@@ -33,6 +33,8 @@ public class Wheel : MonoBehaviour
     private float arrowSpeed;
 
     private float randomFinishAngle;
+
+    public GameObject connLost;
     
 
     void Awake()
@@ -178,7 +180,11 @@ public class Wheel : MonoBehaviour
         Debug.Log(www.text);
 
         if (www.error != null)
+        {
+            uiPlay.EnableButton();
+            connLost.SetActive(true);
             yield break;
+        }
         else
         {
             if (www.text == "\nL")
