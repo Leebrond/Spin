@@ -92,6 +92,11 @@ public class WWWGameType : MonoBehaviour {
 
         WWW www = new WWW(DB.instance.URL + "stw.php", form);
 
+        /*WWWForm form2 = new WWWForm();
+        form2.AddField("idPost", id.ToString());
+        Dictionary<string, string> headers = form2.headers;
+        headers["Content-Type"] = "image/png";*/
+
         WWW www2 = new WWW(DB.instance.URL + "pic.php", form);
 
         yield return www;

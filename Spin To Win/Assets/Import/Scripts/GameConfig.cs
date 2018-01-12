@@ -79,12 +79,10 @@ public class GameConfig : MonoBehaviour {
         byte[] b64_bytes = System.Convert.FromBase64String(data.text);
         Texture2D textureWheel = new Texture2D(1, 1);
         textureWheel.LoadImage(b64_bytes);
+        //textureWheel.EncodeToPNG();
         byte[] newBytes = textureWheel.EncodeToPNG();
-        
-
-        Texture2D newTexture = new Texture2D(1, 1);
+       Texture2D newTexture = new Texture2D(1, 1);
         newTexture.LoadImage(newBytes);
-        
 
         spWheel[id] = Sprite.Create(newTexture, new Rect(0, 0, newTexture.width, newTexture.height), Vector2.one / 2);
     }

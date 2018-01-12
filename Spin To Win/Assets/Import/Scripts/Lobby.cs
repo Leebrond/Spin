@@ -71,6 +71,7 @@ public class Lobby : MonoBehaviour {
                 Destroy(type);
             }
             //Debug.Break();
+            //46.166.160.159/~tigertoto/games/Spin/PHP//PHP/
             menuLogin.SetActive(true);
             FindObjectOfType<WWWGameType>().StartCoroutine("WaitData");
             //StartCoroutine(FindObjectOfType<WWWGameType>().WaitData());
